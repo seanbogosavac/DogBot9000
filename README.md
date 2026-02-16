@@ -2,6 +2,9 @@
 
 Doggo-spamming bot for the homies
 
+```
+Once pulled, the pictures have to be placed inside a pic/ folder at the root of the project
+```
 
 ## Launching project (Linux) :
 
