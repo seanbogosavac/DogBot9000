@@ -1,0 +1,8 @@
+# General
+.idea/
+__pycache__/
+/venv
+.env
+
+# Project-specific
+pic/
