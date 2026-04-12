@@ -5,8 +5,18 @@ from .bot_instance import bot
 from .loops import daily_pistouche
 
 
+# Fail fast if required folders are missing
+base = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+required = [os.path.join(base, "pic"), os.path.join(base, "pic", "secret")]
+
+if not all(os.path.isdir(p) for p in required):
+    logging.error(f"Missing folders: {[p for p in required if not os.path.isdir(p)]}")
+    raise SystemExit(1)
+
 # Configure logging
-log_path = os.path.join(os.path.dirname(__file__), "log.txt")
+log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../logs"))
+os.makedirs(log_dir, exist_ok=True) # Creates logs folder if it doesn't exist
+log_path = os.path.join(log_dir, "log.txt")
 handler = RotatingFileHandler(log_path, maxBytes=1_000_000, backupCount=3)
 formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(name)s: %(message)s"

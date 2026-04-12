@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from bot.bot_runner import bot
 

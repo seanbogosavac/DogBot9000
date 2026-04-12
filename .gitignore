@@ -1,6 +1,7 @@
 # General
 .idea/
 __pycache__/
+logs/
 /venv
 .env
 
