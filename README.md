@@ -17,5 +17,5 @@ nano .env
 Launch container with :
 ```bash
 docker build -t dogbot9000 .
-docker run -d --env-file .env dogbot9000
+docker run -d --name dogbot --env-file .env dogbot9000
 ```
