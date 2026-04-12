@@ -22,4 +22,3 @@ logger.addHandler(handler)
 async def on_ready():
     daily_pistouche.start()
     logging.info("DogBot9000 up and running")
-
