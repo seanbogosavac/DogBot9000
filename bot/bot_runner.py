@@ -1,7 +1,7 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler
-from PIL import Image, UnidentifiedImageError
+from PIL import Image, UnidentifiedImageError, ImageOps
 
 from .bot_instance import bot
 from .loops import daily_pistouche
@@ -90,7 +90,9 @@ def process_image_folder(src_folder: str, dest_folder: str):
                 img.verify()
 
             with Image.open(src_path) as img:
+                img = ImageOps.exif_transpose(img)
                 img = img.convert("RGB")
+
                 base_name = os.path.splitext(filename)[0]
 
                 dest_path = os.path.join(dest_folder, base_name + ".jpg")
