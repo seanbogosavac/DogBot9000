@@ -1,0 +1,13 @@
+services:
+  dogbot:
+    container_name: dogbot
+    build: .
+    image: dogbot9000
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./pic:/app/pic
+      - ./logs:/app/logs
