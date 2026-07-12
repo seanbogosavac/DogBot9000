@@ -31,9 +31,9 @@ async def daily_pistouche():
 
     # Random roll
     roll = random.randint(1, 50)
-    logger.debug(f"Roll result: {roll}")
+    logger.info(f"Roll result: {roll}")
 
-    if roll == 1:
+    if roll == 50:
         message = "LEGENDARY PULL! YOU GOT A SECRET DOG"
         folder_path = os.path.join(os.path.dirname(__file__), "../pic/secret")
         logger.info("Secret dog triggered!")
