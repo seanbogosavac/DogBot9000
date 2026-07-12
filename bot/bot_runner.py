@@ -71,17 +71,21 @@ if errors:
     logger.error(f"Startup validation failed: {errors}")
     raise SystemExit(1)
 
-
+###
+#
+# This function processes all input images from src_folder and adds them to dest_folder
+#
+###
 def process_image_folder(src_folder: str, dest_folder: str):
+    # Ensure both folders exists and creates the destination folders if it doesn't
     if not src_folder or not os.path.isdir(src_folder):
         logger.warning(f"Input folder missing or invalid: {src_folder}")
         return
-
     os.makedirs(dest_folder, exist_ok=True)
 
+    # Handles each picture
     for filename in os.listdir(src_folder):
         src_path = os.path.join(src_folder, filename)
-
         if not os.path.isfile(src_path):
             continue
 
@@ -94,12 +98,12 @@ def process_image_folder(src_folder: str, dest_folder: str):
                 img = img.convert("RGB")
 
                 base_name = os.path.splitext(filename)[0]
+                dest_path = os.path.join(dest_folder, f"{base_name}.jpg")
 
-                dest_path = os.path.join(dest_folder, base_name + ".jpg")
-                i = 1
-                while os.path.exists(dest_path):
-                    dest_path = os.path.join(dest_folder, f"{base_name}_{i}.jpg")
-                    i += 1
+                if os.path.exists(dest_path):
+                    logger.info(f"Skipping {filename}: destination already exists.")
+                    os.remove(src_path)  # Optional: remove the duplicate source file
+                    continue
 
                 img.save(dest_path, "JPEG", quality=90)
 
@@ -108,7 +112,6 @@ def process_image_folder(src_folder: str, dest_folder: str):
 
         except UnidentifiedImageError:
             logger.warning(f"Rejected non-image file: {filename}")
-            # Optionally: move instead of delete
             os.remove(src_path)
 
         except Exception as e:
