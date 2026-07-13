@@ -3,6 +3,10 @@ services:
     container_name: dogbot
     build: .
     image: dogbot9000
+    labels:
+      glance.name: Dogbot9000
+      glance.icon: assets/discord.svg
+      glance.description: Discord bot
     restart: unless-stopped
 
     env_file:

@@ -4,6 +4,8 @@ __pycache__/
 logs/
 /venv
 .env
+._.DS_Store
 
 # Project-specific
 pic/
+input/
