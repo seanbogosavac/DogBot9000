@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 from PIL import Image, UnidentifiedImageError, ImageOps
 
 from .bot_instance import bot
-from .loops import daily_pistouche
+from .loops import daily_pistouche, gamenight_tracker
 
 
 # Configure logging
@@ -132,4 +132,5 @@ async def on_ready():
     if not daily_pistouche.is_running():
         import_all_images()
         daily_pistouche.start()
+        gamenight_tracker.start()
         logger.info("DogBot9000 up and running")
