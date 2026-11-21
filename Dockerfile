@@ -1,5 +1,5 @@
 # Setup container
-FROM python:latest
+FROM python:3.13-slim
 WORKDIR /app
 
 # Install dependencies
